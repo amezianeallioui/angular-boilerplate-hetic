@@ -3,3 +3,5 @@ bower_components/
 dist/*
 .tmp/
 config/config.json
+.idea/
+.idea/*
