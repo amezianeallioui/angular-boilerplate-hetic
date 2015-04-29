@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="demo">
     <head>
         <meta charset="utf-8"/>
         <title>Demo</title>
@@ -10,16 +10,63 @@
 
         <!-- inject:css -->
         <!-- endinject -->
-    </head>
-    <body>
 
-        <h1>Welcome !</h1>
 
         <!-- inject:vendor:js -->
         <!-- endinject -->
 
         <!-- inject:js -->
         <!-- endinject -->
+    </head>
+    <body ng-controller="MoviesListController"  ng-cloak>
+
+        <h1>Welcome !</h1>
+
+        <p ng-show="displaySum">3 + 4 = {{ 3 + 4 }}</p>
+
+        <form>
+          <label for="displaySumInput">Display</label>
+          <input
+            ng-click="displaySum = !displaySum"
+            id="displaySumInput"
+            type="checkbox"/>
+        </form>
+
+        <p>displaySum : {{displaySum}}</p>
+
+        <!-- limit input -->
+        <input type="number" ng-model="limit" placeholder="Limite"/>
+
+        <!-- query input -->
+        <input type="text" ng-model="searchText" placeholder="Rechercher"/>
+
+        <ul>
+          <li ng-repeat="movie in movies | filter:searchText | orderBy | limitTo:limit track by $index">{{movie|camelize}}</li>
+        </ul>
+
+        <form ng-submit="addMovie()">
+          <label for="newMovieInput">Nouveau film</label>
+          <input
+            ng-model="newMovie"
+            type="text"
+            id="newMovieInput"/>
+
+          <input type="submit" value="Ajouter le film"/>
+        </form>
+
+        <h2>Mon futur film est : {{newMovie}}</h2>
+
+        <!-- A for Attribute : si juste modification du comportement-->
+        <div demo-counter></div>
+
+        <!-- E for Element : si on remplace l'élement-->
+        <demo-counter counter="3"></demo-counter>
+        <demo-counter counter="10"></demo-counter>
+        <demo-counter counter="12"></demo-counter>
+
+        <!-- C for Class -->
+        <div class="demo-counter"></div>
+
     </body>
 </html>
 
