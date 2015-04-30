@@ -10,4 +10,5 @@ config/config.json
 .netbeans
 nbproject
 .idea
+.idea/*
 .node_history
