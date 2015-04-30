@@ -1,16 +1,16 @@
 <h1>Liste des films !</h1>
 
-<!--<p ng-show="displaySum">3 + 4 = {{ 3 + 4 }}</p>-->
+<p ng-show="displaySum">3 + 4 = {{ 3 + 4 }}</p>
 
-<!--<form>-->
-  <!--<label for="displaySumInput">Display</label>-->
-  <!--<input-->
-    <!--ng-click="displaySum = !displaySum"-->
-    <!--id="displaySumInput"-->
-    <!--type="checkbox"/>-->
-<!--</form>-->
+<form>
+  <label for="displaySumInput">Display</label>
+  <input
+    ng-click="displaySum = !displaySum"
+    id="displaySumInput"
+    type="checkbox"/>
+</form>
 
-<!--<p>displaySum : {{displaySum}}</p>-->
+<p>displaySum : {{displaySum}}</p>
 
 <!-- limit input -->
 <input type="number" ng-model="limit" placeholder="Limite"/>
@@ -18,31 +18,40 @@
 <!-- query input -->
 <input type="text" ng-model="searchText" placeholder="Rechercher"/>
 
-<ul>
-  <li ng-repeat="movie in movies | filter:searchText | orderBy | limitTo:limit track by $index">
-    <a ng-href="/movies/{{movie.id}}">{{movie.name|camelize}}</a> : {{movie.description}}
-  </li>
-</ul>
-
-<form ng-submit="addMovie()">
-  <label for="newMovieInput">Nouveau film</label>
+<form ng-submit="addMovie()" name="addMovieForm">
+  <label for="newMovieNameInput">Nouveau film</label>
   <input
-    ng-model="newMovie"
+    ng-required="true"
+    ng-model="newMovie.name"
     type="text"
-    id="newMovieInput"/>
+    ng-minlength="3"
+    id="newMovieNameInput"/>
 
-  <input type="submit" value="Ajouter le film"/>
+  <label for="newMovieDescriptionInput">Description</label>
+  <input
+    ng-model="newMovie.description"
+    type="text"
+    id="newMovieDescriptionInput"/>
+
+  <input type="submit" value="Ajouter le film" ng-disabled="!addMovieForm.$valid"/>
 </form>
 
 <h2>Mon futur film est : {{newMovie}}</h2>
 
-<!-- A for Attribute : si juste modification du comportement-->
-<!--<div demo-counter></div>-->
+<ul>
+  <li class="animate-repeat"
+      ng-repeat="movie in movies | filter:searchText | orderBy | limitTo:limit track by $index">
+    <a ng-href="/movies/{{movie.id}}">{{movie.name|camelize}}</a> : {{movie.description}}
+  </li>
+</ul>
 
-<!-- E for Element : si on remplace l'élement-->
-<!--<demo-counter counter="3"></demo-counter>-->
-<!--<demo-counter counter="10"></demo-counter>-->
-<!--<demo-counter counter="12"></demo-counter>-->
+<!-- A for Attribute : si juste modification du comportement-->
+<!--<div demo-counter counter="3"></div>-->
+
+<!-- E for Element : si on remplace l'élément-->
+<demo-counter counter="3"></demo-counter>
+<demo-counter counter="10"></demo-counter>
+<demo-counter counter="12"></demo-counter>
 
 <!-- C for Class -->
-<!--<div class="demo-counter"></div>-->
+<!--<div counter="3" class="demo-counter"></div>-->

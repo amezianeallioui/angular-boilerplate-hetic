@@ -18,6 +18,7 @@
     })
     .factory('Movies', function(Restangular) {
 
+      // On retourne un nouveau service, créé par Restangular
       return Restangular.service('movies');
     });
 }());

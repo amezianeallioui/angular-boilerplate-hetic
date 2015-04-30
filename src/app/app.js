@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  angular.module('demo', ['ngRoute', 'restangular'])
+  angular.module('demo', ['ngRoute', 'restangular', 'ngAnimate'])
     .config(function($routeProvider, $locationProvider, RestangularProvider) {
 
       // On configure RestangularProvider
